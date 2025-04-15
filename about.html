@@ -4,28 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mustaina Sasnur - Digital Business Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/about.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <!-- Header/Navigation -->
     <header class="navbar">
         <nav>
-            <a href="home.html">home</a>
-            <a href="about.html"class="active">about</a>
-            <a href="portfolio.html">Portofolio</a>
-            <a href="blog.html">Blog</a>
-            <a href="contact.html">Contact</a>
+            <a href="home.html">HOME</a>
+            <a href="about.html" class="active">ABOUT</a>
+            <a href="portfolio.html">PORTFOLIO</a>
+            <a href="blog.html">BLOG</a>
+            <a href="contact.html">CONTACT</a>
         </nav>
     </header>
 
-<section class="about" id="about">
     <div class="about-container">
+        <!-- Header Box -->
         <div class="about-header">
             <h2>MORE ABOUT ME</h2>
         </div>
+        
         <div class="about-content">
-            <div class="education">
-                <h3>RIWAYAT PENDIDIKAN</h3>
+            <!-- Left Column -->
+            <div class="left-column">
+                <!-- Education Timeline -->
+                <h3 class="education-title">RIWAYAT PENDIDIKAN</h3>
                 <div class="timeline">
                     <div class="timeline-item">
                         <div class="timeline-dot"></div>
@@ -57,6 +61,7 @@
                     </div>
                 </div>
 
+                <!-- Personal Info Box -->
                 <div class="personal-info">
                     <h3>DATE OF BIRTH</h3>
                     <p>14 APRIL 2005</p>
@@ -64,70 +69,101 @@
                     <p>MUSTAINASASNUR4@GMAIL.COM</p>
                 </div>
             </div>
-
-            <div class="profile-info">
+            
+            <!-- Right Column -->
+            <div class="right-column">
+                <!-- Profile Image -->
                 <div class="profile-image">
                     <img src="img/foto about.png" alt="Mustaina Sasnur">
                 </div>
-                <div class="profile-bio">
-                    <h2>Get to Know Me Better</h2>
+                
+                <!-- Bio Section -->
+                <div class="bio-section">
+                    <h2>Get to <span>Know</span> Me Better</h2>
                     <p>Hi! I'm Mustaina Sasnur, a Digital Business student with a passion for entrepreneurship, digital marketing, and business innovation.</p>
                     <p>Currently pursuing my studies at Universitas Negeri Makassar, I am eager to explore how businesses can leverage technology and data-driven strategies to grow in the digital era. My journey has been shaped by hands-on experience in managing an UMKM in crafts and accessories, allowing me to apply my knowledge directly into real-world business scenarios.</p>
                     <p>I thrive on learning, experimenting, and creating. My goal is to bridge the gap between business and technology, crafting impactful solutions for the future of digital commerce.</p>
                 </div>
             </div>
-
-            <div class="skills">
-                <h2>TECHNICAL SKILL</h2>
-                <div class="skills-container">
-                    <div class="skill-column">
-                        <div class="skill-item">
-                            <h3>MICROSOFT WORD</h3>
-                            <div class="skill-bar">
-                                <div class="skill-level" style="width: 95%"></div>
-                            </div>
-                            <span>95%</span>
+        </div>
+        
+        <!-- Technical Skills Section -->
+        <div class="skills-section">
+            <h2>TECHNICAL SKILL</h2>
+            <div class="skills-container">
+                <div class="skill-column">
+                    <div class="skill-item">
+                        <h3>MICROSOFT WORD</h3>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 95%"></div>
                         </div>
-                        <div class="skill-item">
-                            <h3>FIGMA</h3>
-                            <div class="skill-bar">
-                                <div class="skill-level" style="width: 80%"></div>
-                            </div>
-                            <span>80%</span>
-                        </div>
-                        <div class="skill-item">
-                            <h3>CANVA</h3>
-                            <div class="skill-bar">
-                                <div class="skill-level" style="width: 90%"></div>
-                            </div>
-                            <span>90%</span>
-                        </div>
+                        <span>95%</span>
                     </div>
-                    <div class="skill-column">
-                        <div class="skill-item">
-                            <h3>RSTUDIO</h3>
-                            <div class="skill-bar">
-                                <div class="skill-level" style="width: 75%"></div>
-                            </div>
-                            <span>75%</span>
+                    <div class="skill-item">
+                        <h3>FIGMA</h3>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 80%"></div>
                         </div>
-                        <div class="skill-item">
-                            <h3>GOOGLE COLAB</h3>
-                            <div class="skill-bar">
-                                <div class="skill-level" style="width: 85%"></div>
-                            </div>
-                            <span>85%</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="skill-item">
+                        <h3>CANVA</h3>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 90%"></div>
                         </div>
-                        <div class="skill-item">
-                            <h3>ANACONDA JUPYTER</h3>
-                            <div class="skill-bar">
-                                <div class="skill-level" style="width: 80%"></div>
-                            </div>
-                            <span>80%</span>
+                        <span>90%</span>
+                    </div>
+                </div>
+                <div class="skill-column">
+                    <div class="skill-item">
+                        <h3>RSTUDIO</h3>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 75%"></div>
                         </div>
+                        <span>75%</span>
+                    </div>
+                    <div class="skill-item">
+                        <h3>GOOGLE COLAB</h3>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 85%"></div>
+                        </div>
+                        <span>85%</span>
+                    </div>
+                    <div class="skill-item">
+                        <h3>ANACONDA JUPYTER</h3>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 80%"></div>
+                        </div>
+                        <span>80%</span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">
+            <img src="img/logo.png" alt="M Logo">
+        </div>
+        <div class="footer-nav">
+            <nav>
+                <a href="index.html">HOME</a>
+                <a href="about.html">ABOUT</a>
+                <a href="portfolio.html">PORTFOLIO</a>
+                <a href="blog.html">BLOG</a>
+                <a href="contact.html">CONTACT</a>
+            </nav>
+        </div>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <div class="footer-divider"></div>
+        <div class="copyright">
+            <p>mustainasasnur 2025. All Right Reserved</p>
+        </div>
+    </footer>
+</body>
+</html>
