@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
 <body>
     <!-- Header/Navigation -->
     <header class="navbar">
@@ -22,27 +26,57 @@
     <!-- Home Section -->
     <section class="index" id="index">
         <div class="intro-container">
-            <div class="intro-text">
-                <h1>HEY THERE!<br>I'M NANA</h1>
-                <p class="quote">"making the digital world a<br>more beautiful place,<br>one project<br>at a time"</p>
+            <div class="intro-text animate__animated animate__fadeInUp">
+                <h1 class="animate__animated animate__fadeInUp animate__delay-1s">HEY THERE!<br>I'M NANA</h1> 
+                <p class="quote animate__animated animate__fadeInUp animate__delay-2s">
+                    "making the digital world a<br>more beautiful place,<br>one project<br>at a time"
+                </p>
             </div>
+            
             <div class="profile-image">
                 <img src="img/foto home (1).png" alt="Mustaina Sasnur" class="profile-img"/>
             </div>
         </div>
 
         <div class="gallery-section">
-            <h2>CAPTURED HAPPINESS IN A FRAME</h2>
+            <h2 class="animate__animated">CAPTURED HAPPINESS IN A FRAME</h2>
             <div class="gallery-container">
-                <div class="gallery-item">
+                <div class="gallery-item animate__animated  animate__delay-1s">
                     <img src="img/group 1.jpg" alt="Group Photo 1">
                 </div>
-                <div class="gallery-item">
+                <div class="gallery-item animate__animated  animate__delay-2s">
                     <img src="img/group 2.jpg" alt="Group Photo 2">
                 </div>
-                <div class="gallery-item">
+                <div class="gallery-item animate__animated  animate__delay-3s">
                     <img src="img/group 3.jpg" alt="Group Photo 3">
                 </div>
+            </div>
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+              const elements = document.querySelectorAll('.animate__animated');
+          
+              const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                  if (entry.isIntersecting) {
+                    entry.target.classList.add('animate__fadeInUp'); // fallback animasi jika belum ada animasi spesifik
+                    entry.target.classList.add('animate__fadeIn');   // bisa tambahkan animasi tambahan di sini
+                    entry.target.style.visibility = 'visible';
+                    observer.unobserve(entry.target);
+                  }
+                });
+              }, {
+                threshold: 0.2
+              });
+          
+              elements.forEach(el => {
+                el.style.visibility = 'hidden';
+                observer.observe(el);
+              });
+            });
+          </script>
+          
+        
             </div>
         </div>
 
