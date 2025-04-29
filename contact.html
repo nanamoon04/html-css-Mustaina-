@@ -6,16 +6,15 @@
     <title>Mustaina Sasnur - Digital Business Portfolio</title>
     <link rel="stylesheet" href="contact.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="icon" type="image/x-icon" href="img/M.png">
+    <!-- EmailJS Library -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script src="contact.js" defer></script>
-</head>
-<link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-  />
+ </head>
 <body>
     <!-- Header/Navigation -->
-    <header class="navbar">
+    <header class="navbar animate__animated animate__fadeInDown">
         <nav>
             <a href="index.html">home</a>
             <a href="about.html">about</a>
@@ -26,15 +25,15 @@
     </header>
 
     <!-- Bagian Formulir Kontak -->
-    <section class="about" id="contactSection">
+    <section class="about fade-in-element" id="contactSection">
         <div class="container">
-            <div class="contact-heading">
-                <h2>Contact me</h2>
+            <div class="contact-heading animate__animated animate__fadeIn">
+                <h2 class="animate__animated animate__pulse animate__infinite animate__slower">Contact me</h2>
                 <p>if there is anything that needs<br>to be discussed further.</p>
             </div>
 
             <div class="contact-content">
-                <div class="contact-form">
+                <div class="contact-form fade-in-element from-left">
                     <form id="contactForm">
                         <div class="form-group">
                             <label for="nama">Nama</label>
@@ -60,7 +59,7 @@
                     </form>
                 </div>
                 
-                <div class="contact-info">
+                <div class="contact-info fade-in-element from-right">
                     <h3>Informasi Kontak</h3>
                     <ul>
                         <li><i class="fas fa-envelope"></i> <span>Mustainasasnur4@email.com</span></li>
@@ -75,12 +74,12 @@
     <!-- Bagian Terima Kasih (awalnya disembunyikan) -->
     <section class="thank-you-section" id="thankYouSection" style="display: none;">
         <div class="thank-you-container">
-            <div class="thank-you-icon">
+            <div class="thank-you-icon animate__animated animate__bounceIn">
                 <i class="fas fa-check-circle"></i>
             </div>
-            <h1 class="thank-you-title">Thank you!</h1>
-            <p class="thank-you-message">Pesan Anda telah berhasil terkirim. Saya akan menghubungi Anda kembali sesegera mungkin.</p>
-            <button class="back-button" id="backButton">Kembali ke Formulir</button>
+            <h1 class="thank-you-title animate__animated animate__fadeInDown">Terima Kasih!</h1>
+            <p class="thank-you-message animate__animated animate__fadeInUp">Pesan Anda telah berhasil terkirim. Saya akan menghubungi Anda kembali sesegera mungkin.</p>
+            <button class="back-button animate__animated animate__fadeIn animate__delay-1s" id="backButton">Kembali ke Formulir</button>
         </div>
     </section>
 
@@ -96,7 +95,7 @@
                 <div id="messagesContainer" class="messages-container">
                     <!-- Pesan akan ditampilkan di sini -->
                     <div class="no-messages" id="noMessages">
-                        <i class="fas fa-inbox"></i>
+                        <i class="fas fa-inbox animate__animated animate__pulse animate__infinite animate__slow"></i>
                         <p>Belum ada pesan kontak</p>
                     </div>
                 </div>
@@ -111,34 +110,36 @@
     </section>
 
     <!-- Footer -->
-<footer>
-    <div class="footer-content">
-        <div class="footer-col">
-            <p class="footer-tagline">Build and develop your personal branding with the right digital strategy.</p>
-            <p class="footer-tagline">authentic, and competitive in the digital era.</p>
-            <div class="footer-social">
-                <a href="https://www.instagram.com/mstinassnurrr/" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://wa.me/6282196970964" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                <a href="#" id="adminLink" title="Admin Panel"><i class="fas fa-lock"></i></a>
+    <footer class="fade-in-element">
+        <div class="footer-content">
+            <div class="footer-col fade-in-element">
+                <p class="footer-tagline">Build and develop your personal branding with the right digital strategy.</p>
+                <p class="footer-tagline">authentic, and competitive in the digital era.</p>
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/mstinassnurrr/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com/mustainasasnur" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="#" id="adminLink" title="Admin Panel"><i class="fas fa-lock"></i></a>
+                </div>
+            </div>
+            <div class="footer-col fade-in-element">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Resume</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="#">Timeline</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-col fade-in-element">
+                <h3>Contact</h3>
+                <p>Makassar, Indonesia</p>
+                <p>+62 821-9697-0964</p>
+                <p>Mustainasasnur4@email.com</p>
             </div>
         </div>
-        <div class="footer-col">
-            <h3>Quick Links</h3>
-            <ul>
-                <li><a href="#">Resume</a></li>
-                <li><a href="portfolio.html">Portfolio</a></li>
-                <li><a href="#">Timeline</a></li>
-                <li><a href="blog.html">Blog</a></li>
-            </ul>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Mustainasasnur. All rights reserved.</p>
         </div>
-        <div class="footer-col">
-            <h3>Contact</h3>
-            <p>Makassar, Indonesia</p>
-            <p>+62 821-9697-0964</p>
-            <p>Mustainasasnur4@email.com</p>
-        </div>
-    </div>
-    <div class="footer-bottom">
-        <p>&copy; 2025 Mustainasasnur. All rights reserved.</p>
-    </div>
-</footer>
+    </footer>
+</body>
+</html>

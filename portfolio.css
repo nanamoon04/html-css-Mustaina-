@@ -1,240 +1,312 @@
 /* === Global Styles === */
 body {
-    margin: 0;
-    font-family: 'Arial', sans-serif;
-    background-color: #2b0a2b;
-    color: #ffffff;
-  }
-  
-  h1, h2, h3, h4 {
-    text-align: center;
-    color: #ffff66;
-    font-weight: bold;
-  }
-  
-  p {
-    line-height: 1.6;
-    font-size: 16px;
-  }
-  
-  /* Header/Navigation Styles */
-  .navbar {
-    padding: 15px 5%;
-    background-color: transparent;
-    text-align: right;
-  }
-  
-  .navbar nav a {
-    margin-left: 20px;
-    color: #ffffff;
-    font-weight: 500;
-    transition: color 0.3s ease;
-    font-size: 14px;
-    text-transform: uppercase;
-    text-decoration: none;
-    font-style: normal;
-  }
-  
-  .navbar nav a:hover,
-  .navbar nav a.active {
-    color: #f1c40f;
-  }
-  
-  /* === Header Quote === */
-  header {
-    padding-top: 40px;
-    padding-bottom: 20px;
-    font-size: 24px;
-    text-align: center;
-    color: #ffff66;
-    font-style: italic;
-  }
-  
-  /* === Project Sections === */
-  .portfolio-section {
-    padding: 40px 0;
-    text-align: center;
-  }
-  
-  .project {
-    margin: 40px auto;
-    width: 80%;
-  }
-  
-  .project-box {
-    background-color: #4e065e;
-    padding: 20px;
-    border-radius: 12px;
-    max-width: 700px;
-    margin: 0 auto;
-  }
-  
-  .project-box img {
-    width: 100%;
-    max-width: 400px;
-    height: auto;
-    margin-bottom: 15px;
-    border-radius: 10px;
-    background-color: #fff;
-    padding: 8px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  .project-box p {
-    text-align: left;
-  }
-  
-  /* === Experience Section === */
-  .experience-title {
-    margin-top: 60px;
-    margin-bottom: 20px;
-  }
-  
-  .experience-gallery {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    padding: 20px;
-  }
-  
-  .experience-item {
-    max-width: 300px;
-  }
-  
-  .experience-item img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-  }
-  
-  .experience-item p {
-    margin-top: 10px;
-    color: #fff;
-    font-size: 16px;
-    text-align: center;
-  }
-  
-/* Footer Styles */
-footer {
-  padding: 50px 5% 20px;
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #2b0a2b;
+  color: #ffffff;
+}
+
+h1, h2, h3, h4 {
+  text-align: center;
+  color: #ffff66;
+  font-weight: bold;
+}
+
+p {
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+/* Header/Navigation Styles */
+.navbar {
+  padding: 15px 5%;
+  background-color: transparent;
+  text-align: right;
+}
+
+.navbar nav a {
+  margin-left: 20px;
+  color: #ffffff;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  font-size: 14px;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-style: normal;
+}
+
+.navbar nav a:hover,
+.navbar nav a.active {
+  color: #f1c40f;
+}
+
+/* === Header Quote === */
+header {
+  padding-top: 40px;
+  padding-bottom: 20px;
+  font-size: 24px;
+  text-align: center;
+  color: #ffff66;
+  font-style: italic;
+}
+
+/* === Project Sections === */
+.portfolio-section {
+  padding: 40px 0;
   text-align: center;
 }
 
-.footer-logo img {
-  height: 60px;
+.project {
+  margin: 40px auto;
+  width: 80%;
+}
+
+.project-box {
+  background-color: #4e065e;
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.project-box img {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  background-color: #fff;
+  padding: 8px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.project-box p {
+  text-align: left;
+}
+
+/* === Experience Section === */
+.experience-title {
+  margin-top: 60px;
   margin-bottom: 20px;
+}
+
+.experience-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.experience-item {
+  max-width: 300px;
+}
+
+.experience-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.experience-item p {
+  margin-top: 10px;
+  color: #fff;
+  font-size: 16px;
+  text-align: center;
+}
+
+/* Footer Styles */
+footer {
+padding: 50px 5% 20px;
+text-align: center;
+}
+
+.footer-logo img {
+height: 60px;
+margin-bottom: 20px;
 }
 
 .footer-nav {
-  margin-bottom: 20px;
+margin-bottom: 20px;
 }
 
 .footer-nav nav {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
+display: flex;
+justify-content: center;
+gap: 30px;
 }
 
 .footer-nav a {
-  font-size: 14px;
-  text-transform: uppercase;
+font-size: 14px;
+text-transform: uppercase;
 }
 
 .social-icons {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin-bottom: 30px;
+display: flex;
+justify-content: center;
+gap: 15px;
+margin-bottom: 30px;
 }
 
 .social-icons a {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: #000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 0.3s;
+width: 40px;
+height: 40px;
+border-radius: 50%;
+background-color: #000;
+display: flex;
+align-items: center;
+justify-content: center;
+transition: background-color 0.3s;
 }
 
 .social-icons a:hover {
-  background-color: #f1c40f; /* Warna kuning saat hover */
+background-color: #f1c40f; /* Warna kuning saat hover */
 }
 
 .social-icons i {
-  font-size: 20px;
-  color: #fff;
+font-size: 20px;
+color: #fff;
 }
 
 .footer-divider {
-  height: 1px;
-  background-color: rgba(255, 255, 255, 0.2);
-  width: 40%;
-  margin: 0 auto 20px;
+height: 1px;
+background-color: rgba(255, 255, 255, 0.2);
+width: 40%;
+margin: 0 auto 20px;
 }
 
 .copyright {
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.7);
+font-size: 14px;
+color: rgba(255, 255, 255, 0.7);
 }
 
 /* Responsive Styles */
 @media (max-width: 992px) {
-  .intro-container {
-      flex-direction: column;
-      text-align: center;
-  }
+.intro-container {
+    flex-direction: column;
+    text-align: center;
+}
 
-  .profile-image {
-      width: 60%;
-      margin-top: 30px;
-  }
+.profile-image {
+    width: 60%;
+    margin-top: 30px;
+}
 
-  .hello-section {
-      flex-direction: column;
-      text-align: center;
-  }
+.hello-section {
+    flex-direction: column;
+    text-align: center;
+}
 
-  .hello-image {
-      margin: 0 auto;
-  }
+.hello-image {
+    margin: 0 auto;
+}
 }
 
 @media (max-width: 768px) {
-  .gallery-container {
-      flex-direction: column;
-      align-items: center;
-  }
+.gallery-container {
+    flex-direction: column;
+    align-items: center;
+}
 
-  .gallery-item {
-      width: 60%;
-      margin-bottom: 20px;
-  }
+.gallery-item {
+    width: 60%;
+    margin-bottom: 20px;
+}
 
-  .footer-nav nav {
-      flex-wrap: wrap;
-      gap: 15px;
-  }
+.footer-nav nav {
+    flex-wrap: wrap;
+    gap: 15px;
+}
 }
 
 @media (max-width: 576px) {
-  .intro-text h1 {
-      font-size: 3rem;
-  }
+.intro-text h1 {
+    font-size: 3rem;
+}
 
-  .profile-image {
-      width: 80%;
-  }
+.profile-image {
+    width: 80%;
+}
 
-  .gallery-item {
-      width: 80%;
-  }
+.gallery-item {
+    width: 80%;
+}
 
-  .hello-text h2 {
-      font-size: 2rem;
-  }
+.hello-text h2 {
+    font-size: 2rem;
+}
+}
+
+
+/* Animasi gambar saat diklik */
+.project-box img, .experience-item img {
+cursor: pointer;
+transition: transform 0.3s ease;
+}
+
+.project-box img:hover, .experience-item img:hover {
+transform: scale(1.05);
+}
+
+/* Animasi untuk gambar dengan CSS :active (ketika diklik) */
+.project-box img:active, .experience-item img:active {
+animation: flip 1s;
+}
+
+/* Animasi efek zooming pada project boxes */
+.project-box {
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-box:hover {
+transform: translateY(-5px);
+box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Animasi scroll untuk section */
+.animate-on-scroll {
+opacity: 0;
+transform: translateY(30px);
+transition: all 0.8s ease;
+}
+
+.animate-from-left {
+opacity: 0;
+transform: translateX(-50px);
+transition: all 0.8s ease;
+}
+
+.animate-from-right {
+opacity: 0;
+transform: translateX(50px);
+transition: all 0.8s ease;
+}
+
+.visible {
+opacity: 1;
+transform: translate(0, 0);
+}
+
+/* Quote styling */
+.quote-heading {
+position: relative;
+padding-bottom: 15px;
+}
+
+.quote-heading:after {
+content: "";
+position: absolute;
+width: 0;
+height: 3px;
+background-color: #f1c40f;
+bottom: 0;
+left: 50%;
+transform: translateX(-50%);
+transition: width 1.5s ease;
+}
+
+.quote-heading.visible:after {
+width: 150px;
 }

@@ -1,4 +1,4 @@
-/* contact.css - Gabungan original contact.css dan tambahan CSS */
+/* contact.css - Styling untuk halaman kontak dengan animasi */
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
@@ -22,12 +22,18 @@ a.active {
     color: #ffd700;
 }
 
+/* Animasi Klik untuk Navigation Links */
+a:active {
+    animation: pulse 0.5s;
+}
+
 .navbar {
     display: flex;
     justify-content: flex-end;
     padding: 20px;
     background-color: #2d0a32;
     border-bottom: 1px solid #411b4d;
+    animation: fadeInDown 0.8s;
 }
 
 .container {
@@ -40,6 +46,7 @@ a.active {
 .contact-heading {
     text-align: center;
     margin-bottom: 40px;
+    animation: fadeIn 1s;
 }
 
 .contact-heading h2 {
@@ -50,11 +57,13 @@ a.active {
     display: inline-block;
     border-radius: 12px;
     text-transform: uppercase;
+    animation: pulse 2s infinite;
 }
 
 .contact-heading p {
     color: #ccc;
     font-size: 16px;
+    animation: fadeIn 1.5s;
 }
 
 .contact-content {
@@ -70,6 +79,21 @@ a.active {
     padding: 25px;
     border-radius: 15px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.contact-form {
+    animation: fadeInLeft 1s;
+}
+
+.contact-info {
+    animation: fadeInRight 1s;
+}
+
+.contact-form:hover,
+.contact-info:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 .contact-form form {
@@ -100,6 +124,14 @@ a.active {
     color: #fff;
     font-size: 14px;
     box-sizing: border-box;
+    transition: all 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    background-color: #8a5c98;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+    outline: none;
 }
 
 textarea {
@@ -124,11 +156,38 @@ textarea {
     transform: scale(1.05);
 }
 
+/* Animasi Klik untuk Submit Button */
+.submit-btn:active {
+    animation: rubberBand 0.5s;
+}
+
 .contact-info h3 {
     font-size: 20px;
     margin-bottom: 20px;
     text-transform: uppercase;
     color: #fff;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.contact-info h3:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background-color: #ffd700;
+    animation: width 2s ease-in-out infinite alternate;
+}
+
+@keyframes width {
+    from {
+        width: 50px;
+    }
+    to {
+        width: 100px;
+    }
 }
 
 .contact-info ul {
@@ -142,10 +201,20 @@ textarea {
     gap: 10px;
     margin-bottom: 15px;
     font-size: 14px;
+    transition: transform 0.3s;
+}
+
+.contact-info li:hover {
+    transform: translateX(5px);
 }
 
 .contact-info i {
     color: #ffd700;
+    transition: transform 0.3s;
+}
+
+.contact-info li:hover i {
+    transform: scale(1.2);
 }
 
 /* Footer Styling */
@@ -154,6 +223,7 @@ footer {
     color: #ffffff;
     padding: 40px 20px 20px;
     margin-top: 50px;
+    animation: fadeInUp 1s;
 }
 
 .footer-content {
@@ -178,6 +248,18 @@ footer {
     font-size: 18px;
     margin-bottom: 15px;
     text-transform: uppercase;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-col h3:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background-color: #ffd700;
 }
 
 .footer-col ul {
@@ -187,6 +269,11 @@ footer {
 
 .footer-col ul li {
     margin-bottom: 10px;
+    transition: transform 0.3s;
+}
+
+.footer-col ul li:hover {
+    transform: translateX(5px);
 }
 
 .footer-col ul li a {
@@ -199,14 +286,26 @@ footer {
     color: #ffd700;
 }
 
+/* Animasi Klik untuk Footer Links */
+.footer-col ul li a:active {
+    animation: pulse 0.5s;
+}
+
 .footer-social a {
     font-size: 20px;
     margin-right: 10px;
     color: #fff;
+    transition: all 0.3s;
 }
 
 .footer-social a:hover {
     color: #ffd700;
+    transform: scale(1.2);
+}
+
+/* Animasi Klik untuk Social Icons */
+.footer-social a:active {
+    animation: heartBeat 0.5s;
 }
 
 .footer-bottom {
@@ -216,7 +315,7 @@ footer {
     font-size: 13px;
 }
 
-/* Bagian CSS untuk halaman terima kasih */
+/* Thank You Section */
 .thank-you-section {
     padding: 30px 0;
 }
@@ -229,24 +328,39 @@ footer {
     background-color: #5b2a6d;
     border-radius: 15px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .thank-you-icon {
     font-size: 60px;
     color: #ffd700;
     margin-bottom: 20px;
+    animation: bounceIn 1s;
 }
 
 .thank-you-title {
     font-size: 32px;
     margin-bottom: 20px;
     color: #fff;
+    animation: fadeInDown 1s;
 }
 
 .thank-you-message {
     font-size: 16px;
     color: #e4d0f3;
     margin-bottom: 30px;
+    animation: fadeInUp 1s;
 }
 
 .back-button {
@@ -259,6 +373,7 @@ footer {
     border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
+    animation: fadeIn 1.5s;
 }
 
 .back-button:hover {
@@ -266,7 +381,12 @@ footer {
     transform: scale(1.05);
 }
 
-/* Bagian CSS untuk admin panel */
+/* Animasi Klik untuk Back Button */
+.back-button:active {
+    animation: rubberBand 0.5s;
+}
+
+/* Admin Section */
 .admin-section {
     padding: 30px 0;
 }
@@ -276,6 +396,7 @@ footer {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 30px;
+    animation: fadeInDown 0.8s;
 }
 
 .admin-heading h2 {
@@ -293,6 +414,11 @@ footer {
     color: #fff;
     font-size: 24px;
     cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.close-btn:hover {
+    transform: rotate(90deg);
 }
 
 .messages-container {
@@ -302,6 +428,7 @@ footer {
     min-height: 200px;
     margin-bottom: 20px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 1s;
 }
 
 .message-card {
@@ -310,6 +437,13 @@ footer {
     padding: 20px;
     margin-bottom: 20px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    animation: fadeInUp 0.5s;
+}
+
+.message-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
 
 .message-header {
@@ -378,6 +512,11 @@ footer {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
+/* Animasi Klik untuk Message Buttons */
+.message-btn:active {
+    animation: pulse 0.5s;
+}
+
 .delete-btn {
     color: #ff6b6b;
 }
@@ -385,6 +524,7 @@ footer {
 .admin-actions {
     display: flex;
     justify-content: flex-end;
+    animation: fadeInUp 1.2s;
 }
 
 .action-btn {
@@ -409,6 +549,11 @@ footer {
     color: #fff;
 }
 
+/* Animasi Klik untuk Action Buttons */
+.action-btn:active {
+    animation: rubberBand 0.5s;
+}
+
 .no-messages {
     display: flex;
     flex-direction: column;
@@ -416,12 +561,60 @@ footer {
     justify-content: center;
     height: 150px;
     color: #ccc;
+    animation: fadeIn 1s;
 }
 
 .no-messages i {
     font-size: 40px;
     margin-bottom: 15px;
     color: #8a5c98;
+    animation: pulse 2s infinite;
+}
+
+/* Loading State */
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.submit-btn.loading {
+    position: relative;
+    color: transparent;
+}
+
+.submit-btn.loading::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    border-top-color: #2d0a32;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+/* Animasi scroll untuk elemen */
+.fade-in-element {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.fade-in-element.from-left {
+    transform: translateX(-50px);
+}
+
+.fade-in-element.from-right {
+    transform: translateX(50px);
+}
+
+.fade-in-element.visible {
+    opacity: 1;
+    transform: translate(0, 0);
 }
 
 /* Responsive Design */
@@ -461,4 +654,140 @@ footer {
     .navbar a {
         margin: 10px 0;
     }
+}
+
+/* Keyframes Animasi */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translate3d(0, -50px, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 50px, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translate3d(-50px, 0, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translate3d(50px, 0, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes pulse {
+    from {
+        transform: scale3d(1, 1, 1);
+    }
+    50% {
+        transform: scale3d(1.1, 1.1, 1.1);
+    }
+    to {
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+@keyframes bounceIn {
+    from,
+    20%,
+    40%,
+    60%,
+    80%,
+    to {
+        animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+    0% {
+        opacity: 0;
+        transform: scale3d(0.3, 0.3, 0.3);
+    }
+    20% {
+        transform: scale3d(1.1, 1.1, 1.1);
+    }
+    40% {
+        transform: scale3d(0.9, 0.9, 0.9);
+    }
+    60% {
+        opacity: 1;
+        transform: scale3d(1.03, 1.03, 1.03);
+    }
+    80% {
+        transform: scale3d(0.97, 0.97, 0.97);
+    }
+    to {
+        opacity: 1;
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+@keyframes rubberBand {
+    from {
+        transform: scale3d(1, 1, 1);
+    }
+    30% {
+        transform: scale3d(1.25, 0.75, 1);
+    }
+    40% {
+        transform: scale3d(0.75, 1.25, 1);
+    }
+    50% {
+        transform: scale3d(1.15, 0.85, 1);
+    }
+    65% {
+        transform: scale3d(0.95, 1.05, 1);
+    }
+    75% {
+        transform: scale3d(1.05, 0.95, 1);
+    }
+    to {
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+@keyframes heartBeat {
+    0% {
+        transform: scale(1);
+    }
+    14% {
+        transform: scale(1.3);
+    }
+    28% {
+        transform: scale(1);
+    }
+    42% {
+        transform: scale(1.3);
+    }
+    70% {
+        transform: scale(1);
+    }
+}
+
+/* Smooth scrolling behavior */
+html {
+    scroll-behavior: smooth;
 }

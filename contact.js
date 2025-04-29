@@ -1,257 +1,266 @@
-// contact.js - Penanganan formulir kontak dan administrasi pesan
+// contact.js - Penanganan formulir kontak dengan EmailJS dan animasi scroll
+
+// Inisialisasi EmailJS dengan public key Anda
+(function() {
+    emailjs.init("f177BWx_Ra4rmjmrJ"); // Ganti dengan public key EmailJS Anda
+})();
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Elemen-elemen untuk bagian formulir kontak
+    // Elemen untuk bagian formulir kontak
     const contactForm = document.getElementById('contactForm');
     const contactSection = document.getElementById('contactSection');
     const thankYouSection = document.getElementById('thankYouSection');
     const backButton = document.getElementById('backButton');
-    
-    // Elemen-elemen untuk bagian admin
+
+    // Elemen untuk bagian admin
     const adminLink = document.getElementById('adminLink');
     const adminSection = document.getElementById('adminSection');
     const closeAdmin = document.getElementById('closeAdmin');
     const messagesContainer = document.getElementById('messagesContainer');
     const noMessages = document.getElementById('noMessages');
     const clearMessagesBtn = document.getElementById('clearMessages');
-    
-    // ===== BAGIAN KONTAK =====
-    
-    // Menangani pengiriman formulir
+
+    // ===== BAGIAN FORMULIR KONTAK =====
+
+    // Penanganan submit form
     if (contactForm) {
         contactForm.addEventListener('submit', function(event) {
             event.preventDefault();
             
-            // Mendapatkan nilai dari form
+            // Ambil data form
             const nama = document.getElementById('nama').value;
             const email = document.getElementById('email').value;
             const subjek = document.getElementById('subjek').value;
             const pesan = document.getElementById('pesan').value;
             
-            // Validasi sederhana
-            if (nama.length < 3) {
-                alert('Nama harus minimal 3 karakter');
-                return false;
-            }
+            // Tampilkan status loading
+            const submitButton = contactForm.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton.innerHTML;
+            submitButton.disabled = true;
+            submitButton.innerHTML = 'Mengirim...';
             
-            if (!validateEmail(email)) {
-                alert('Silakan masukkan alamat email yang valid');
-                return false;
-            }
-            
-            if (subjek.length < 3) {
-                alert('Subjek harus minimal 3 karakter');
-                return false;
-            }
-            
-            if (pesan.length < 10) {
-                alert('Pesan harus minimal 10 karakter');
-                return false;
-            }
-            
-            // Buat objek pesan untuk disimpan
-            const messageData = {
-                id: Date.now(),  // Membuat ID unik berdasarkan timestamp
-                nama: nama,
-                email: email,
-                subjek: subjek,
-                pesan: pesan,
-                waktu: new Date().toLocaleString()
+            // Siapkan parameter template
+            const templateParams = {
+                from_name: nama,
+                reply_to: email,
+                subject: subjek,
+                message: pesan
             };
             
-            // Simpan pesan ke localStorage
-            saveMessage(messageData);
-            
-            // Tampilkan pesan terima kasih
-            showThankYouMessage();
-            
-            // Reset form
-            contactForm.reset();
+            // Kirim email menggunakan EmailJS
+            emailjs.send('service_ozhez6k', 'template_4xqif1s', templateParams)
+                .then(function(response) {
+                    console.log('SUKSES!', response.status, response.text);
+                    
+                    // Sembunyikan form dan tampilkan pesan terima kasih
+                    contactForm.reset();
+                    contactSection.style.display = 'none';
+                    thankYouSection.style.display = 'block';
+                    
+                    // Simpan pesan ke local storage untuk admin
+                    saveMessage(nama, email, subjek, pesan);
+                })
+                .catch(function(error) {
+                    console.log('GAGAL...', error);
+                    alert('Gagal mengirim pesan. Silakan coba lagi nanti.');
+                })
+                .finally(function() {
+                    // Kembalikan status tombol
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = originalButtonText;
+                });
         });
     }
-    
-    // Tombol kembali di halaman terima kasih
+
+    // Tombol kembali ke formulir - FIXED
     if (backButton) {
         backButton.addEventListener('click', function() {
-            hideThankYouMessage();
+            // Sembunyikan thank you section
+            thankYouSection.style.display = 'none';
+            // Tampilkan contact section
+            contactSection.style.display = 'block';
+            
+            // Log untuk debugging
+            console.log('Back button clicked!');
+            console.log('Thank You Section display:', thankYouSection.style.display);
+            console.log('Contact Section display:', contactSection.style.display);
+            
+            // Force redraw contact section
+            void contactSection.offsetWidth;
+            
+            // Reset form jika diperlukan
+            if (contactForm) {
+                contactForm.reset();
+            }
+            
+            // Scroll ke contact section
+            contactSection.scrollIntoView({ behavior: 'smooth' });
         });
+    } else {
+        console.error('Back button not found in the DOM!');
     }
-    
+
     // ===== BAGIAN ADMIN =====
-    
-    // Toggle tampilan admin panel
+
+    // Toggle bagian admin
     if (adminLink) {
         adminLink.addEventListener('click', function(event) {
             event.preventDefault();
             adminSection.style.display = 'block';
-            contactSection.style.display = 'none';
-            thankYouSection.style.display = 'none';
-            
-            // Tampilkan pesan-pesan yang tersimpan
-            displayMessages();
+            loadMessages();
         });
     }
-    
-    // Tutup panel admin
+
+    // Tutup bagian admin
     if (closeAdmin) {
         closeAdmin.addEventListener('click', function() {
             adminSection.style.display = 'none';
-            contactSection.style.display = 'block';
         });
     }
-    
+
     // Hapus semua pesan
     if (clearMessagesBtn) {
         clearMessagesBtn.addEventListener('click', function() {
-            clearAllMessages();
-        });
-    }
-    
-    // Event listener untuk aksi pada pesan (hapus pesan)
-    if (messagesContainer) {
-        messagesContainer.addEventListener('click', function(event) {
-            // Hapus pesan tertentu
-            if (event.target.closest('.delete-btn')) {
-                const button = event.target.closest('.delete-btn');
-                const id = button.dataset.id;
-                deleteMessage(id);
-            }
-            
-            // Balas pesan (buka aplikasi email)
-            if (event.target.closest('.reply-btn')) {
-                const button = event.target.closest('.reply-btn');
-                const email = button.dataset.email;
-                window.location.href = `mailto:${email}`;
+            if (confirm('Apakah Anda yakin ingin menghapus semua pesan?')) {
+                localStorage.removeItem('contactMessages');
+                loadMessages();
             }
         });
     }
-    
-    // ===== FUNGSI UTILITAS =====
-    
-    // Validasi email
-    function validateEmail(email) {
-        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return re.test(email);
-    }
-    
-    // Simpan pesan baru ke localStorage
-    function saveMessage(messageData) {
-        // Ambil pesan yang sudah ada di localStorage
-        let messages = JSON.parse(localStorage.getItem('contactMessages')) || [];
+
+    // ===== FUNGSI PEMBANTU =====
+
+    // Simpan pesan ke local storage
+    function saveMessage(nama, email, subjek, pesan) {
+        const timestamp = new Date().toISOString();
+        const newMessage = { nama, email, subjek, pesan, timestamp, read: false };
         
-        // Tambahkan pesan baru
-        messages.push(messageData);
-        
-        // Simpan kembali ke localStorage
+        let messages = JSON.parse(localStorage.getItem('contactMessages') || '[]');
+        messages.push(newMessage);
         localStorage.setItem('contactMessages', JSON.stringify(messages));
-        
-        console.log('Pesan berhasil disimpan:', messageData);
     }
-    
-    // Ambil semua pesan dari localStorage
-    function getMessages() {
-        return JSON.parse(localStorage.getItem('contactMessages')) || [];
-    }
-    
-    // Tampilkan pesan dalam container
-    function displayMessages() {
-        if (!messagesContainer) return;
+
+    // Muat pesan dari local storage
+    function loadMessages() {
+        const messages = JSON.parse(localStorage.getItem('contactMessages') || '[]');
         
-        const messages = getMessages();
-        
-        // Kosongkan container terlebih dahulu
-        messagesContainer.innerHTML = '';
-        
-        // Jika tidak ada pesan, tampilkan pesan kosong
         if (messages.length === 0) {
-            messagesContainer.appendChild(noMessages);
-            return;
+            messagesContainer.innerHTML = '';
+            noMessages.style.display = 'block';
+        } else {
+            noMessages.style.display = 'none';
+            
+            // Urutkan pesan berdasarkan timestamp (terbaru dulu)
+            messages.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+            
+            // Buat HTML untuk pesan
+            let html = '';
+            messages.forEach((msg, index) => {
+                const date = new Date(msg.timestamp).toLocaleString();
+                const readClass = msg.read ? 'read' : 'unread';
+                
+                html += `
+                    <div class="message-card ${readClass}" data-index="${index}">
+                        <div class="message-header">
+                            <div class="message-sender">${msg.nama}</div>
+                            <div class="message-time">${date}</div>
+                        </div>
+                        <div class="message-subject">${msg.subjek}</div>
+                        <div class="message-body">${msg.pesan}</div>
+                        <div class="message-email">
+                            <i class="far fa-envelope"></i>
+                            ${msg.email}
+                        </div>
+                        <div class="message-actions">
+                            <button onclick="toggleRead(${index})" class="message-btn">
+                                <i class="far ${msg.read ? 'fa-envelope' : 'fa-envelope-open'}"></i>
+                                ${msg.read ? 'Tandai belum dibaca' : 'Tandai sudah dibaca'}
+                            </button>
+                            <button onclick="deleteMessage(${index})" class="message-btn delete-btn">
+                                <i class="far fa-trash-alt"></i>
+                                Hapus
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            messagesContainer.innerHTML = html;
         }
+    }
+
+    // Tandai pesan sebagai sudah/belum dibaca
+    window.toggleRead = function(index) {
+        let messages = JSON.parse(localStorage.getItem('contactMessages') || '[]');
+        if (messages[index]) {
+            messages[index].read = !messages[index].read;
+            localStorage.setItem('contactMessages', JSON.stringify(messages));
+            loadMessages();
+        }
+    };
+
+    // Hapus sebuah pesan
+    window.deleteMessage = function(index) {
+        if (confirm('Apakah Anda yakin ingin menghapus pesan ini?')) {
+            let messages = JSON.parse(localStorage.getItem('contactMessages') || '[]');
+            messages.splice(index, 1);
+            localStorage.setItem('contactMessages', JSON.stringify(messages));
+            loadMessages();
+        }
+    };
+
+    // ===== ANIMASI SCROLL =====
+
+    // Tambahkan kelas fade-in-element pada elemen yang ingin dianimasikan saat scroll
+    const elementsToAnimate = [
+        document.querySelector('.contact-heading'),
+        document.querySelector('.contact-info'),
+        document.querySelector('footer'),
+        ...document.querySelectorAll('.footer-col')
+    ];
+
+    // Tambahkan kelas ke elemen yang ingin dianimasikan
+    elementsToAnimate.forEach(element => {
+        if (element) {
+            element.classList.add('fade-in-element');
+        }
+    });
+
+    // Arah animasi untuk elemen informasi kontak
+    const contactInfoElement = document.querySelector('.contact-info');
+    if (contactInfoElement) contactInfoElement.classList.add('from-right');
+
+    // Function untuk animasi scroll
+    function animateOnScroll() {
+        const elements = document.querySelectorAll('.fade-in-element');
         
-        // Urutkan pesan dari yang terbaru
-        messages.sort((a, b) => b.id - a.id);
-        
-        // Tambahkan setiap pesan ke container
-        messages.forEach(message => {
-            const messageCard = createMessageCard(message);
-            messagesContainer.appendChild(messageCard);
+        elements.forEach(element => {
+            // Posisi elemen relatif terhadap viewport
+            const elementPosition = element.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+            
+            // Jika elemen sudah masuk ke viewport
+            if (elementPosition < windowHeight - 100) {
+                element.classList.add('visible');
+            }
         });
     }
     
-    // Buat elemen kartu pesan
-    function createMessageCard(message) {
-        const card = document.createElement('div');
-        card.className = 'message-card';
-        card.dataset.id = message.id;
-        
-        card.innerHTML = `
-            <div class="message-header">
-                <div class="message-sender">${escapeHTML(message.nama)}</div>
-                <div class="message-time">${message.waktu}</div>
-            </div>
-            <div class="message-subject">${escapeHTML(message.subjek)}</div>
-            <div class="message-body">${escapeHTML(message.pesan)}</div>
-            <div class="message-email">
-                <i class="fas fa-envelope"></i>
-                ${escapeHTML(message.email)}
-            </div>
-            <div class="message-actions">
-                <button class="message-btn reply-btn" data-email="${escapeHTML(message.email)}">
-                    <i class="fas fa-reply"></i> Balas
-                </button>
-                <button class="message-btn delete-btn" data-id="${message.id}">
-                    <i class="fas fa-trash"></i> Hapus
-                </button>
-            </div>
-        `;
-        
-        return card;
-    }
+    // Jalankan animasi saat halaman dimuat
+    setTimeout(animateOnScroll, 100);
     
-    // Fungsi keamanan untuk mencegah XSS
-    function escapeHTML(str) {
-        return str
-            .replace(/&/g, '&amp;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;')
-            .replace(/"/g, '&quot;')
-            .replace(/'/g, '&#039;');
-    }
-    
-    // Hapus pesan tertentu
-    function deleteMessage(id) {
-        let messages = getMessages();
+    // Jalankan animasi saat scroll
+    window.addEventListener('scroll', animateOnScroll);
+
+    // Animasi form focus
+    const formInputs = document.querySelectorAll('.form-group input, .form-group textarea');
+    formInputs.forEach(input => {
+        input.addEventListener('focus', function() {
+            this.parentElement.classList.add('focused');
+        });
         
-        // Filter pesan dengan ID yang cocok
-        messages = messages.filter(message => message.id != id);
-        
-        // Simpan kembali ke localStorage
-        localStorage.setItem('contactMessages', JSON.stringify(messages));
-        
-        // Tampilkan ulang pesan
-        displayMessages();
-    }
-    
-    // Hapus semua pesan
-    function clearAllMessages() {
-        if (confirm('Apakah Anda yakin ingin menghapus semua pesan?')) {
-            localStorage.removeItem('contactMessages');
-            displayMessages();
-        }
-    }
-    
-    // Tampilkan pesan terima kasih
-    function showThankYouMessage() {
-        contactSection.style.display = 'none';
-        adminSection.style.display = 'none';
-        thankYouSection.style.display = 'block';
-        window.scrollTo(0, 0);
-    }
-    
-    // Sembunyikan pesan terima kasih
-    function hideThankYouMessage() {
-        thankYouSection.style.display = 'none';
-        contactSection.style.display = 'block';
-        adminSection.style.display = 'none';
-    }
+        input.addEventListener('blur', function() {
+            this.parentElement.classList.remove('focused');
+        });
+    });
 });
